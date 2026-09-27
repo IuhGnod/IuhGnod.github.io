@@ -3,10 +3,11 @@ title: 你好，Hexo
 date: 2026-09-16 17:45:00
 tags:
   - Hexo
-  - 博客
+  - 工具
 categories:
-  - 随笔
+  - 工具与效率
 excerpt: 这是本站的第一篇文章，记录一下 Hexo + Fluid 博客的搭建过程。
+index_img: /img/cover-repair.jpg
 top: true
 toc: true
 ---

@@ -3,20 +3,21 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 我的博客
-subtitle: '记录生活 · 沉淀技术 · 分享热爱'
-description: '一个基于 Hexo + Fluid 主题的个人博客'
+title: 走线之间
+subtitle: '电路 · 嵌入式 · 调试 · 工具'
+description: '一个硬件工程师的技术与思考'
 keywords:
-  - Hexo
-  - Fluid
-  - 博客
-author: Your Name
+  - 电路设计
+  - PCB Layout
+  - 嵌入式开发
+  - 硬件调试
+author: IuhGnod
 language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://iuhgnod.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -104,4 +105,6 @@ theme: fluid
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/IuhGnod/IuhGnod.github.io.git
+  branch: gh-pages

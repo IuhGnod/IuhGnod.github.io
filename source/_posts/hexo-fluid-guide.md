@@ -4,10 +4,11 @@ date: 2026-09-16 18:00:00
 tags:
   - Hexo
   - Fluid
-  - 前端
+  - 工具
 categories:
-  - 技术
+  - 工具与效率
 excerpt: 整理 Fluid 主题中比较常用的配置项，方便日后查阅。
+index_img: /img/cover-board.jpg
 toc: true
 ---
 
