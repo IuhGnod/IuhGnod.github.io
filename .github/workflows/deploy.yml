@@ -32,7 +32,12 @@ jobs:
         run: npm ci
 
       - name: 生成静态文件
-        run: npx hexo generate
+        run: |
+          npx hexo clean
+          npx hexo generate
+
+      - name: 检查站点产物
+        run: npm run check:site
 
       - name: 配置 Pages
         uses: actions/configure-pages@v5

@@ -147,14 +147,14 @@ font:
   code_font_size: 85%
 
 # 自定义 js 文件路径，相对 source 目录，如 /js/custom.js 对应 source/js/custom.js
-custom_js:
+custom_js: /js/reading-progress.js
 
 # 自定义 css 文件路径，用法同上
-custom_css:
+custom_css: /css/reading-progress.css
 
 # 网页访问统计
 web_analytics:
-  enable: false
+  enable: true
 
   # 遵循访客浏览器"请勿追踪"设置，开启则不统计此类访客
   follow_dnt: true
@@ -183,7 +183,7 @@ web_analytics:
   openkounter:
     server_url: https://open-kounter.mintimate.cn
     path: window.location.pathname
-    ignore_local: false
+    ignore_local: true
 
   # Umami 统计（仅支持自部署）；要展示 PV/UV 需填全部配置，否则只填 src 和 website_id，见 https://umami.is/docs
   umami:
@@ -192,7 +192,7 @@ web_analytics:
     domains:         # 仅统计指定域名，多个用英文逗号分隔（可避免统计 localhost）
     start_time: 2024-01-01   # PV/UV 统计开始时间，格式 "YYYY-MM-DD"
     token:           # umami 只读用户的 token（通过 login api 获取）
-    api_server:      # umami 部署的服务器地址，如 "https://umami.example.com"
+    api_server:      # umami 自部署服务的实际地址
 
 # Canonical，向搜索引擎指定规范网址；开启前需在 hexo 配置中正确设置 url
 canonical:
@@ -235,9 +235,9 @@ navbar:
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
-    #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
+    - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
-# 本地搜索，基于 hexo-generator-search 插件；已装其他搜索插件请关闭，避免生成多余索引
+# 本地搜索由 Fluid 自带生成器提供
 search:
   enable: true
   path: /local-search.xml          # 搜索索引文件路径
@@ -287,17 +287,17 @@ footer:
 
   # 网站 PV/UV 统计展示
   statistics:
-    enable: false
+    enable: true
     # 数据来源：busuanzi | leancloud | umami | openkounter
     # leancloud/umami/openkounter 需在 web_analytics 中配置对应参数；busuanzi 本地显示数值偏大属正常
-    source: "busuanzi"
+    source: "openkounter"
 
   # 国内大陆服务器备案信息，其他地区保持关闭
   beian:
     enable: false
-    icp_text: 京ICP证123456号        # ICP 证号
-    police_text: 京公网安备12345678号 # 公安备案号，不填则只显示 ICP
-    police_code: 12345678            # 公安备案编号，用于跳转查询
+    icp_text:                         # ICP 证号
+    police_text:                      # 公安备案号，不填则只显示 ICP
+    police_code:                      # 公安备案编号，用于跳转查询
     police_icon: /img/police_beian.png  # 公安备案图片，为空则不显示
 
 
@@ -306,7 +306,7 @@ footer:
 # ==========================================================
 
 index:
-  banner_img: /img/banner.jpg
+  banner_img: /img/banner-tech-circuit.png
   banner_img_height: 100    # 头图高度（屏幕百分比 0~100）
   banner_mask_alpha: 0.3    # 头图黑色蒙版不透明度（0~1.0）
 
@@ -350,7 +350,7 @@ index:
 # ==========================================================
 
 post:
-  banner_img: /img/banner.jpg
+  banner_img: /img/banner-tech-circuit.png
   banner_img_height: 70
   banner_mask_alpha: 0.3
 
@@ -380,12 +380,12 @@ post:
 
     # 浏览量计数
     views:
-      enable: false
-      source: "busuanzi"   # 数据来源：busuanzi | leancloud | umami
+      enable: true
+      source: "openkounter"   # 数据来源：busuanzi | leancloud | umami | openkounter
 
   # 文章开头显示更新时间，默认取 md 文件更新时间，可用 front-matter 的 updated 手动指定
   updated:
-    enable: false
+    enable: true
     date_format: "LL a"
     relative: false      # true 则用相对时间，如"3 天前"
     note_class: info     # 提示标签类型：default | primary | info | success | warning | danger | light
@@ -426,7 +426,7 @@ post:
       enable: true       # 显示发布日期
       format: "LL"
     update_date:
-      enable: false      # 显示更新日期
+      enable: true       # 显示更新日期
       format: "LL"
 
   # 文章底部上一篇 / 下一篇
@@ -464,9 +464,9 @@ post:
 
   # 评论插件：需先在这里开启，再按 type 配置下方对应插件参数
   comments:
-    enable: false
+    enable: true
     # 可选：utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
-    type: disqus
+    type: giscus
 
 
 # ==========================================================
@@ -486,9 +486,7 @@ disqus:
   shortname:
   # 以下为 Disqusjs 配置，支持多个 apikey，建议自建 api 端点，见 https://github.com/SukkaW/DisqusJS
   disqusjs: false
-  apikey:
-    - 'KEY1'
-    #- 'KEY2'
+  apikey: []
   api: https://disqus.skk.moe/disqus/
   admin:
   adminLabel:
@@ -572,10 +570,11 @@ cusdis:
 
 # Giscus，基于 GitHub Discussions，类似 Utterances，见 https://giscus.app/
 giscus:
-  repo:
-  repo-id:
-  category:
-  category-id:
+  repo: IuhGnod/IuhGnod.github.io
+  # 从 https://giscus.app/ 生成配置后填写真实 ID
+  repo-id: R_kgDOUt8X_w
+  category: General
+  category-id: DIC_kwDOUt8X_84DIfEv
   theme-light: light
   theme-dark: dark
   mapping: pathname
@@ -732,7 +731,7 @@ links:
   # 友链下方的自定义区域（支持 HTML），可放申请友链的说明
   custom:
     enable: true
-    content: '<hr><p>欢迎硬件 / 嵌入式方向的朋友互换友链。申请时按如下格式提供信息：</p><ul><li>博客名：硬件工程师笔记</li><li>简介：电路设计 · 嵌入式开发 · 调试踩坑</li><li>链接：https://yourdomain.com</li><li>头像：https://yourdomain.com/img/avatar.jpg</li></ul><p>我看到后会尽快添加 🙌</p>'
+    content: '<hr><p>欢迎硬件 / 嵌入式方向的朋友互换友链。申请时请通过关于页邮箱或社交账号提供：</p><ul><li>博客名</li><li>一句话简介</li><li>站点链接</li><li>头像链接（可选）</li></ul><p>我会确认站点内容和链接可访问后添加。</p>'
 
   # 评论插件
   comments:
